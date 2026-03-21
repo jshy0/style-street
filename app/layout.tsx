@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Orbitron, Space_Grotesk } from "next/font/google";
+import { Orbitron, Space_Grotesk, Geist } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -28,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${orbitron.variable} ${spaceGrotesk.variable} h-full`}
+      className={cn("h-full", orbitron.variable, spaceGrotesk.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-[#111012] text-zinc-100">
         <Navbar />
