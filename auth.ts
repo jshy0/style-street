@@ -38,3 +38,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+export async function isAuthenticated() {
+  const session = await auth();
+  return session?.user != null;
+}

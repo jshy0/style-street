@@ -50,7 +50,7 @@ export const products = pgTable("products", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   price: integer().notNull(), // e.g. 4500 = £45.00
-  image: text().notNull(),
+  image: text().notNull(), // Vercel Blob URL
   badge: varchar({ length: 10 }), // "New" | "Hot" | null
   category: varchar({ length: 100 }).notNull(), // "Tops" | "Bottoms" | "Outerwear" | "Footwear" | "Accessories"
 });

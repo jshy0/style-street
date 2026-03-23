@@ -71,7 +71,7 @@ export default function Home() {
           <div className="mt-10 flex items-center gap-4">
             <Sparkle size={10} />
             <Link href="/products">
-              <Button size="lg" variant="chrome">
+              <Button size="lg" variant="outline">
                 Shop All
               </Button>
             </Link>

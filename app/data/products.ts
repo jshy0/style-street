@@ -1,3 +1,11 @@
+export type Categories =
+  | "Tops"
+  | "Hoodies"
+  | "Bottoms"
+  | "Outerwear"
+  | "Footwear"
+  | "Accessories";
+
 export interface Product {
   id: number;
   name: string;
@@ -5,13 +13,7 @@ export interface Product {
   price: number;
   image: string;
   badge?: "New" | "Hot";
-  category:
-    | "Tops"
-    | "Hoodies"
-    | "Bottoms"
-    | "Outerwear"
-    | "Footwear"
-    | "Accessories";
+  category: Categories;
 }
 
 export const products: Product[] = [

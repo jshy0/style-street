@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Orbitron, Space_Grotesk, Geist } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#111012] text-zinc-100">
         <Navbar />
         {children}
+        <Toaster theme="dark" />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { products, Product, NewProduct } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { requireAdmin } from "@/lib/admin";
+import { del } from "@vercel/blob";
 
 export async function getAllProducts() {
   return await db.select().from(products);
@@ -29,5 +30,22 @@ export async function updateProduct(id: number, data: Partial<Product>) {
 
 export async function deleteProduct(id: number) {
   await requireAdmin();
-  return await db.delete(products).where(eq(products.id, id)).returning();
+
+  const [product] = await db
+    .select({ image: products.image })
+    .from(products)
+    .where(eq(products.id, id));
+
+  const result = await db
+    .delete(products)
+    .where(eq(products.id, id))
+    .returning();
+
+  if (product?.image) {
+    await del(product.image, {
+      token: process.env.STYLE_STREET_BLOB_READ_WRITE_TOKEN,
+    });
+  }
+
+  return result;
 }
