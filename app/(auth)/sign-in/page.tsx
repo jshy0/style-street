@@ -13,8 +13,8 @@ function Sparkle({ size = 14 }: { size?: number }) {
 
 export default function SignInPage() {
   return (
-    <ScreenTemplate>
-      <Card className="border-zinc-700">
+    <ScreenTemplate className="flex flex-col items-center justify-center">
+      <Card className="border-zinc-700 w-full max-w-sm">
         <CardHeader className="text-center">
           <div className="mb-2 flex items-center justify-center gap-2 text-zinc-400"></div>
           <CardTitle className="font-display text-2xl font-black tracking-tight">
