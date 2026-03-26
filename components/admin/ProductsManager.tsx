@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Product } from "@/db/schema";
+import { Product, NewProduct } from "@/db/schema";
 import {
   createProduct,
   updateProduct,
@@ -125,11 +125,11 @@ export function ProductsManager({
       return;
     }
 
-    const data = {
+    const data: NewProduct = {
       name: values.name,
       slug: values.name.toLowerCase().replace(/\s+/g, "-"),
       price: Math.round(parseFloat(values.price) * 100),
-      image: imagePreview, // Use state value, not form value
+      image: imagePreview as string,
       category: values.category,
       badge: values.badge === "none" ? null : values.badge,
     };
@@ -154,7 +154,7 @@ export function ProductsManager({
           );
           toast.success("Product updated");
         } else {
-          const [created] = await createProduct(data as any);
+          const [created] = await createProduct(data);
           setProducts((prev) => [...prev, created]);
           toast.success("Product created");
         }
