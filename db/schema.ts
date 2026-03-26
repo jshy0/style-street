@@ -49,6 +49,7 @@ export const verificationTokens = pgTable("verification_tokens", {
 export const products = pgTable("products", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
+  slug: varchar({ length: 255 }).notNull().unique(),
   price: integer().notNull(), // e.g. 4500 = £45.00
   image: text().notNull(), // Vercel Blob URL
   badge: varchar({ length: 10 }), // "New" | "Hot" | null

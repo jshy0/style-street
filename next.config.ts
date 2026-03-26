@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "picsum.photos",
       },
+      {
+        protocol: "https",
+        hostname: "alffj7ad6d5uqyzk.public.blob.vercel-storage.com",
+      },
     ],
   },
 };

@@ -127,6 +127,7 @@ export function ProductsManager({
 
     const data = {
       name: values.name,
+      slug: values.name.toLowerCase().replace(/\s+/g, "-"),
       price: Math.round(parseFloat(values.price) * 100),
       image: imagePreview, // Use state value, not form value
       category: values.category,

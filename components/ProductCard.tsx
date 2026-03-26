@@ -2,10 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import type { Product } from "@/app/data/products";
+interface ProductCardProduct {
+  id: number;
+  name: string;
+  slug: string;
+  price: number;
+  image: string;
+  badge?: string | null;
+  category: string;
+}
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductCardProduct;
   className?: string;
 }
 

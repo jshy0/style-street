@@ -1,5 +1,6 @@
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/app/data/products";
+import { getAllProducts } from "./actions";
 
 function Sparkle({ size = 10 }: { size?: number }) {
   return (
@@ -9,7 +10,8 @@ function Sparkle({ size = 10 }: { size?: number }) {
   );
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getAllProducts();
   return (
     <main className="min-h-screen bg-[#111012] pt-16">
       {/* Page header */}
