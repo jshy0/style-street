@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#111012"/>
+  <!-- 4-pointed sparkle -->
+  <path d="M16 3 L17.8 13.2 L28 16 L17.8 18.8 L16 29 L14.2 18.8 L4 16 L14.2 13.2 Z" fill="white"/>
+  <!-- small inner sparkle accent -->
+  <path d="M16 11.5 L16.6 14.9 L20 16 L16.6 17.1 L16 20.5 L15.4 17.1 L12 16 L15.4 14.9 Z" fill="#111012" opacity="0.4"/>
+</svg>
