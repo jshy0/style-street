@@ -94,7 +94,7 @@ export function ProductsManager({
     setImageFile(null);
     form.reset({
       name: product.name,
-      price: (product.price / 100).toFixed(2),
+      price: String(product.price / 100),
       category: product.category,
       badge: product.badge ?? "none",
     });
@@ -308,10 +308,10 @@ export function ProductsManager({
               <Input
                 id="price"
                 type="number"
-                step="0.01"
+                step="1"
                 {...form.register("price")}
                 className="bg-zinc-800 border-zinc-700"
-                placeholder="e.g. 45.00"
+                placeholder="e.g. 45"
               />
               {form.formState.errors.price && (
                 <p className="text-xs text-red-400">

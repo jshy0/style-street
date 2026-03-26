@@ -60,7 +60,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </p>
         </div>
         <p className="ml-3 shrink-0 font-mono text-sm font-semibold text-zinc-300">
-          ${product.price}
+          £{product.price / 100}
         </p>
       </div>
     </Link>
