@@ -1,3 +1,4 @@
+import { isAuthenticated } from "@/auth";
 import { User } from "lucide-react";
 import Link from "next/link";
 
@@ -15,7 +16,14 @@ function StarIcon({ className }: { className?: string }) {
   );
 }
 
-export function Navbar() {
+export async function Navbar() {
+  async function userLink() {
+    if (await isAuthenticated()) {
+      return "/profile";
+    } else {
+      return "/sign-in";
+    }
+  }
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-zinc-950/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -38,7 +46,7 @@ export function Navbar() {
             Shop
           </Link>
           <Link
-            href="/sign-in"
+            href={await userLink()}
             className="rounded px-4 py-2 text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-100"
           >
             <User size={18} />
