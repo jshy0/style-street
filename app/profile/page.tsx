@@ -1,9 +1,11 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { ScreenTemplate } from "@/components/screen/ScreenTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import SignOut from "@/components/sign-out";
 
 export default async function ProfilePage() {
@@ -51,6 +53,18 @@ export default async function ProfilePage() {
                 <p className="truncate text-sm text-zinc-500">{email}</p>
               </div>
             </div>
+
+            {role === "admin" && (
+              <div className="mt-6 border-t border-zinc-800 pt-6">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-zinc-700 bg-zinc-800 text-zinc-100 hover:bg-zinc-700 hover:text-white"
+                >
+                  <Link href="/dashboard">Go to Dashboard</Link>
+                </Button>
+              </div>
+            )}
 
             <div className="mt-6 border-t border-zinc-800 pt-6">
               <SignOut />
