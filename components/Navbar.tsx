@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
+import { CartDrawer } from "@/components/CartDrawer";
 
 function StarIcon({ className }: { className?: string }) {
   return (
@@ -55,6 +56,7 @@ export async function Navbar() {
           >
             <User size={18} />
           </Link>
+          <CartDrawer />
         </nav>
       </div>
     </header>
