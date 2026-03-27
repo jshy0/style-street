@@ -5,6 +5,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: text().primaryKey(),
@@ -56,7 +57,43 @@ export const products = pgTable("products", {
   category: varchar({ length: 100 }).notNull(), // "Tops" | "Bottoms" | "Outerwear" | "Footwear" | "Accessories"
 });
 
+export const orders = pgTable("orders", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  userId: text().references(() => users.id, { onDelete: "set null" }),
+  fullName: text().notNull(),
+  email: text().notNull(),
+  address: text().notNull(),
+  city: text().notNull(),
+  postcode: text().notNull(),
+  country: text().notNull(),
+  status: text().default("pending").notNull(), // "pending" | "processing" | "shipped" | "delivered"
+  total: integer().notNull(), // in pence
+  createdAt: timestamp().defaultNow().notNull(),
+});
+
+export const orderItems = pgTable("order_items", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  orderId: integer()
+    .notNull()
+    .references(() => orders.id, { onDelete: "cascade" }),
+  productId: integer().references(() => products.id, { onDelete: "set null" }),
+  productName: text().notNull(), // snapshot at time of order
+  productImage: text().notNull(),
+  price: integer().notNull(), // price at time of order, in pence
+  quantity: integer().notNull(),
+});
+
+export const ordersRelations = relations(orders, ({ many }) => ({
+  items: many(orderItems),
+}));
+
+export const orderItemsRelations = relations(orderItems, ({ one }) => ({
+  order: one(orders, { fields: [orderItems.orderId], references: [orders.id] }),
+}));
+
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
+export type Order = typeof orders.$inferSelect;
+export type OrderItem = typeof orderItems.$inferSelect;
