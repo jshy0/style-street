@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/app/data/products";
+import { getFeaturedProducts } from "./products/actions";
 
 function Sparkle({ size = 14 }: { size?: number }) {
   return (
@@ -11,28 +11,48 @@ function Sparkle({ size = 14 }: { size?: number }) {
   );
 }
 
-function CrosshairLines() {
+function CornerBrackets() {
   return (
     <>
-      {/* Vertical line */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-zinc-800/30" />
-      {/* Horizontal line */}
-      <div className="pointer-events-none absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-zinc-800/30" />
+      <div className="absolute left-5 top-20 h-7 w-7 border-l border-t border-zinc-700/50 sm:left-8" />
+      <div className="absolute right-5 top-20 h-7 w-7 border-r border-t border-zinc-700/50 sm:right-8" />
+      <div className="absolute bottom-8 left-5 h-7 w-7 border-b border-l border-zinc-700/50 sm:left-8" />
+      <div className="absolute bottom-8 right-5 h-7 w-7 border-b border-r border-zinc-700/50 sm:right-8" />
     </>
   );
 }
 
-export default function Home() {
-  const featured = products.slice(0, 4);
+const BASE_ITEMS = [
+  "New Collection",
+  "Streetwear Essentials",
+  "Est. 2026",
+  "Limited Drops",
+  "Style Street",
+];
+// 5 repetitions per strip keeps each strip ~3500px+, wider than any viewport
+const MARQUEE_STRIP = [...BASE_ITEMS, ...BASE_ITEMS, ...BASE_ITEMS, ...BASE_ITEMS, ...BASE_ITEMS];
+
+export default async function Home() {
+  const featured = await getFeaturedProducts();
 
   return (
     <main className="min-h-screen bg-[#111012]">
       {/* ── Hero ── */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4">
-        {/* Ambient glow behind headline */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(90,90,90,0.10)_0%,transparent_70%)]" />
+        {/* Dot grid */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #71717a 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
 
-        <CrosshairLines />
+        {/* Ambient glow */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(100,100,100,0.13)_0%,transparent_70%)]" />
+
+        <CornerBrackets />
 
         <div className="relative z-10 flex flex-col items-center text-center">
           {/* Eyebrow row */}
@@ -76,6 +96,29 @@ export default function Home() {
               </Button>
             </Link>
             <Sparkle size={10} />
+          </div>
+        </div>
+
+        {/* Marquee band */}
+        <div className="absolute bottom-20 left-0 right-0 overflow-hidden border-y border-zinc-800/60 py-3">
+          <div className="flex">
+            {[0, 1].map((i) => (
+              <div
+                key={i}
+                className="flex shrink-0 animate-marquee"
+                aria-hidden={i === 1}
+              >
+                {MARQUEE_STRIP.map((item, j) => (
+                  <span
+                    key={j}
+                    className="flex items-center gap-5 px-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-600"
+                  >
+                    {item}
+                    <Sparkle size={5} />
+                  </span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
