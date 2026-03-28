@@ -233,9 +233,9 @@ export function ProductsManager({
                       {product.badge ? (
                         <Badge
                           variant={
-                            product.badge === "Hot"
+                            product.badge === "hot"
                               ? "hot"
-                              : product.badge === "New"
+                              : product.badge === "new"
                                 ? "new"
                                 : "default"
                           }
@@ -418,8 +418,8 @@ export function ProductsManager({
                 </SelectTrigger>
                 <SelectContent className="bg-zinc-900 border-zinc-800">
                   <SelectItem value="none">None</SelectItem>
-                  <SelectItem value="New">New</SelectItem>
-                  <SelectItem value="Hot">Hot</SelectItem>
+                  <SelectItem value="new">New</SelectItem>
+                  <SelectItem value="hot">Hot</SelectItem>
                 </SelectContent>
               </Select>
             </div>

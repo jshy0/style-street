@@ -1,10 +1,10 @@
 export type Categories =
-  | "Tops"
-  | "Hoodies"
-  | "Bottoms"
-  | "Outerwear"
-  | "Footwear"
-  | "Accessories";
+  | "tops"
+  | "hoodies"
+  | "bottoms"
+  | "outerwear"
+  | "footwear"
+  | "accessories";
 
 export interface Product {
   id: number;
@@ -12,19 +12,19 @@ export interface Product {
   slug: string;
   price: number;
   image: string;
-  badge?: "New" | "Hot";
+  badge?: "new" | "hot";
   category: Categories;
 }
 
 export const CATEGORIES: Categories[] = [
-  "Tops",
-  "Hoodies",
-  "Bottoms",
-  "Outerwear",
-  "Footwear",
-  "Accessories",
+  "tops",
+  "hoodies",
+  "bottoms",
+  "outerwear",
+  "footwear",
+  "accessories",
 ];
 
-export type Badges = "New" | "Hot";
+export type Badges = "new" | "hot";
 
-export const BADGES: Badges[] = ["New", "Hot"];
+export const BADGES: Badges[] = ["new", "hot"];

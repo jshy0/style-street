@@ -50,7 +50,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
         {product.badge && (
           <div className="absolute left-3 top-3">
-            <Badge variant={product.badge === "New" ? "new" : "hot"}>
+            <Badge variant={product.badge === "new" ? "new" : "hot"}>
               {product.badge}
             </Badge>
           </div>

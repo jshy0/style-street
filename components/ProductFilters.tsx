@@ -1,10 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { CATEGORIES } from "@/app/data/products";
+import { BADGES, CATEGORIES } from "@/app/data/products";
 import { SlidersHorizontal, X } from "lucide-react";
-
-const BADGES = ["New", "Hot"] as const;
 
 interface FilterButtonProps {
   active: boolean;

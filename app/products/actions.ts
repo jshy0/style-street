@@ -42,11 +42,11 @@ export async function getFeaturedProducts() {
 }
 
 export async function getNewArrivals() {
-  return await db.select().from(products).where(eq(products.badge, "New"));
+  return await db.select().from(products).where(eq(products.badge, "new"));
 }
 
 export async function getLimitedDrops() {
-  return await db.select().from(products).where(eq(products.badge, "Hot"));
+  return await db.select().from(products).where(eq(products.badge, "hot"));
 }
 
 export async function createProduct(data: NewProduct) {

@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: Props) {
             />
             {product.badge && (
               <div className="absolute left-4 top-4">
-                <Badge variant={product.badge === "New" ? "new" : "hot"}>
+                <Badge variant={product.badge === "new" ? "new" : "hot"}>
                   {product.badge}
                 </Badge>
               </div>
