@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { products, Product, NewProduct } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq, SQL } from "drizzle-orm";
 import { requireAdmin } from "@/lib/admin";
 import { del } from "@vercel/blob";
 
@@ -20,6 +20,21 @@ export async function getProductBySlug(slug: string) {
     .from(products)
     .where(eq(products.slug, slug));
   return product ?? null;
+}
+
+export async function getFilteredProducts(
+  category: string | null,
+  badge: string | null,
+) {
+  const conditions = [
+    category ? eq(products.category, category) : undefined,
+    badge ? eq(products.badge, badge) : undefined,
+  ].filter(Boolean) as SQL[];
+
+  return await db
+    .select()
+    .from(products)
+    .where(conditions.length > 0 ? and(...conditions) : undefined);
 }
 
 export async function getFeaturedProducts() {

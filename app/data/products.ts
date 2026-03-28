@@ -24,3 +24,7 @@ export const CATEGORIES: Categories[] = [
   "Footwear",
   "Accessories",
 ];
+
+export type Badges = "New" | "Hot";
+
+export const BADGES: Badges[] = ["New", "Hot"];
