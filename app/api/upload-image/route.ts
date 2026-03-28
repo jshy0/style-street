@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
     const filename = `${Date.now()}-${file.name}`;
     const blob = await put(filename, file, {
       access: "public",
-      token: process.env.STYLE_STREET_BLOB_READ_WRITE_TOKEN,
     });
 
     return NextResponse.json(blob);
@@ -31,7 +30,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "No URL provided" }, { status: 400 });
     }
 
-    await del(url, { token: process.env.STYLE_STREET_BLOB_READ_WRITE_TOKEN });
+    await del(url);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Delete error:", error);
