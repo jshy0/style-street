@@ -1,4 +1,5 @@
 import {
+  boolean,
   integer,
   pgTable,
   text,
@@ -55,6 +56,7 @@ export const products = pgTable("products", {
   image: text().notNull(), // Vercel Blob URL
   badge: varchar({ length: 10 }), // "New" | "Hot" | null
   category: varchar({ length: 100 }).notNull(), // "Tops" | "Bottoms" | "Outerwear" | "Footwear" | "Accessories"
+  featured: boolean().default(false).notNull(),
 });
 
 export const orders = pgTable("orders", {
