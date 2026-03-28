@@ -4,6 +4,21 @@ import { db } from "@/lib/db";
 import { orders, orderItems } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
 
+export async function updateOrderStatus(orderId: number, status: string) {
+  return await db
+    .update(orders)
+    .set({ status })
+    .where(eq(orders.id, orderId))
+    .returning();
+}
+
+export async function getAllOrders() {
+  return await db.query.orders.findMany({
+    orderBy: desc(orders.createdAt),
+    with: { items: true },
+  });
+}
+
 export async function getUserOrders(userId: string) {
   return await db.query.orders.findMany({
     where: eq(orders.userId, userId),
