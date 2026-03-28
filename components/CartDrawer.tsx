@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { ShoppingBag, X, Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCartStore } from "@/store/cart";
 import {
   Sheet,
@@ -137,9 +139,14 @@ export function CartDrawer() {
                 £{(total / 100).toFixed(2)}
               </span>
             </div>
-            <button className="w-full rounded-lg bg-zinc-100 py-2.5 text-sm font-semibold tracking-wide text-zinc-950 transition-colors hover:bg-white active:scale-[0.98]">
-              Checkout
-            </button>
+            <SheetClose asChild>
+              <Link
+                href="/checkout"
+                className="block w-full rounded-lg bg-zinc-100 py-2.5 text-center text-sm font-semibold tracking-wide text-zinc-950 transition-colors hover:bg-white active:scale-[0.98]"
+              >
+                Checkout
+              </Link>
+            </SheetClose>
           </div>
         )}
       </SheetContent>

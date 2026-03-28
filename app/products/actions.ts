@@ -14,6 +14,10 @@ export async function getProductById(id: number) {
   return await db.select().from(products).where(eq(products.id, id));
 }
 
+export async function getFeaturedProducts() {
+  return await db.select().from(products).where(eq(products.featured, true));
+}
+
 export async function createProduct(data: NewProduct) {
   await requireAdmin();
   return await db.insert(products).values(data).returning();
