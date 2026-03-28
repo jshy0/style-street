@@ -50,8 +50,9 @@ export function CheckoutForm({ defaultEmail, defaultName }: Props) {
 
   async function onSubmit(values: FormValues) {
     try {
-      await placeOrder({ ...values, items, total });
+      const orderId = await placeOrder({ ...values, items, total });
       clearCart();
+      router.push(`/checkout/success?orderId=${orderId}`);
     } catch {
       setError("root", { message: "Something went wrong. Please try again." });
     }

@@ -78,5 +78,5 @@ export async function placeOrder(data: CheckoutInput) {
     throw new Error("Failed to place order. Please try again.");
   }
 
-  redirect(`/checkout/success?orderId=${orderId}`);
+  return orderId;
 }

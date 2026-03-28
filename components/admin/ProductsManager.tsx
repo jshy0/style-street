@@ -54,7 +54,7 @@ const productSchema = z.object({
     }),
   category: z.string().min(1, "Category is required"),
   badge: z.string(),
-  sizes: z.array(z.string()).default([]),
+  sizes: z.array(z.string()),
 });
 
 type ProductFormValues = z.infer<typeof productSchema>;
