@@ -21,7 +21,7 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <ScreenTemplate>
+    <ScreenTemplate className="pt-8">
       <div className="w-full">
         <div className="mb-8">
           <ScreenTitle>Dashboard</ScreenTitle>

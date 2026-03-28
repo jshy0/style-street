@@ -1,16 +1,13 @@
+import { cn } from "@/lib/utils";
+
 interface ScreenTemplateProps {
   children: React.ReactNode;
   className?: string;
-  title?: string;
 }
 
-export function ScreenTemplate({
-  children,
-  className = "",
-  title,
-}: ScreenTemplateProps) {
+export function ScreenTemplate({ children, className }: ScreenTemplateProps) {
   return (
-    <div className={`min-h-screen bg-[#111012] px-4 pt-8 ${className} w-full`}>
+    <div className={cn("min-h-screen bg-[#111012] w-full px-4 pt-24", className)}>
       {children}
     </div>
   );

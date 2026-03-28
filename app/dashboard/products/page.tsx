@@ -7,7 +7,7 @@ export default async function DashboardProductsPage() {
   const products = await getAllProducts();
 
   return (
-    <ScreenTemplate>
+    <ScreenTemplate className="pt-8">
       <div className="w-full">
         <div className="mb-8">
           <ScreenTitle>Products</ScreenTitle>

@@ -1,6 +1,6 @@
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/app/data/products";
 import { getAllProducts } from "./actions";
+import { ScreenTemplate } from "@/components/screen/ScreenTemplate";
 
 function Sparkle({ size = 10 }: { size?: number }) {
   return (
@@ -13,7 +13,7 @@ function Sparkle({ size = 10 }: { size?: number }) {
 export default async function ProductsPage() {
   const products = await getAllProducts();
   return (
-    <main className="min-h-screen bg-[#111012] pt-16">
+    <ScreenTemplate className="px-0 pt-16">
       {/* Page header */}
       <div className="border-b border-zinc-800/60 bg-[#111012]">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -45,6 +45,6 @@ export default async function ProductsPage() {
           ))}
         </div>
       </div>
-    </main>
+    </ScreenTemplate>
   );
 }
