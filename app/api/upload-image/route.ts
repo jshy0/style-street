@@ -31,7 +31,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "No URL provided" }, { status: 400 });
     }
 
-    await del(url);
+    await del(url, { token: process.env.BLOB_READ_WRITE_TOKEN });
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Delete error:", error);
