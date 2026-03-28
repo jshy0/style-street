@@ -90,7 +90,9 @@ export default async function ProductPage({ params }: Props) {
             {/* Divider */}
             <div className="my-8 flex items-center gap-4">
               <div className="h-px flex-1 bg-zinc-800" />
-              <span className="text-zinc-700"><Sparkle size={6} /></span>
+              <span className="text-zinc-700">
+                <Sparkle size={6} />
+              </span>
               <div className="h-px flex-1 bg-zinc-800" />
             </div>
 
