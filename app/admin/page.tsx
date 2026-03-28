@@ -4,6 +4,7 @@ import { ScreenTemplate } from "@/components/screen/ScreenTemplate";
 import { ScreenTitle } from "@/components/screen/ScreenTitle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Package, Tag, Sparkles } from "lucide-react";
+import { toTitleCase } from "@/lib/utils";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -63,7 +64,7 @@ export default async function DashboardPage() {
                         {product.name}
                       </p>
                       <p className="text-sm text-zinc-500">
-                        {product.category}
+                        {toTitleCase(product.category)}
                       </p>
                     </div>
                     <p className="text-zinc-300 font-medium">
