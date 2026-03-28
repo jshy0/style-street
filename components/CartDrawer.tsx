@@ -24,6 +24,9 @@ export function CartDrawer() {
   const count = totalItems();
   const total = totalPrice();
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -32,7 +35,7 @@ export function CartDrawer() {
           aria-label="Open cart"
         >
           <ShoppingBag size={18} />
-          {count > 0 && (
+          {mounted && count > 0 && (
             <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-100 text-[10px] font-bold text-zinc-950 tabular-nums">
               {count > 99 ? "99+" : count}
             </span>
