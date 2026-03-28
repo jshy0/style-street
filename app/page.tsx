@@ -2,25 +2,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { getFeaturedProducts } from "./products/actions";
-
-function Sparkle({ size = 14 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0L14.4 9.6L24 12L14.4 14.4L12 24L9.6 14.4L0 12L9.6 9.6L12 0Z" />
-    </svg>
-  );
-}
-
-function CornerBrackets() {
-  return (
-    <>
-      <div className="absolute left-5 top-20 h-7 w-7 border-l border-t border-zinc-700/50 sm:left-8" />
-      <div className="absolute right-5 top-20 h-7 w-7 border-r border-t border-zinc-700/50 sm:right-8" />
-      <div className="absolute bottom-8 left-5 h-7 w-7 border-b border-l border-zinc-700/50 sm:left-8" />
-      <div className="absolute bottom-8 right-5 h-7 w-7 border-b border-r border-zinc-700/50 sm:right-8" />
-    </>
-  );
-}
+import { Sparkle } from "@/components/Sparkle";
+import { AmbientGlow, CornerBrackets, DotGrid } from "@/components/HeroDecorations";
 
 const BASE_ITEMS = [
   "New Collection",
@@ -39,18 +22,8 @@ export default async function Home() {
     <main className="min-h-screen bg-[#111012]">
       {/* ── Hero ── */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4">
-        {/* Dot grid */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.18]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, #71717a 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-
-        {/* Ambient glow */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(100,100,100,0.13)_0%,transparent_70%)]" />
+        <DotGrid />
+        <AmbientGlow />
 
         <CornerBrackets />
 
