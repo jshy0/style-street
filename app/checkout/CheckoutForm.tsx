@@ -58,7 +58,7 @@ export function CheckoutForm({ defaultEmail, defaultName }: Props) {
   }
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-10 pt-8 lg:grid-cols-[1fr_360px]">
+    <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_360px]">
       {/* Left — shipping form */}
       <div>
         <h1 className="mb-8 font-display text-2xl font-black tracking-tight text-zinc-100">

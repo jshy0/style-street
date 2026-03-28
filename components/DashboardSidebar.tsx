@@ -6,7 +6,7 @@ export async function DashboardSidebar() {
   const session = await auth();
 
   return (
-    <aside className="w-60 bg-zinc-950 border-r border-zinc-800 h-screen sticky top-0 flex flex-col">
+    <aside className="w-60 bg-zinc-950 border-r border-zinc-800 h-full flex flex-col">
       <div className="p-6">
         <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-1">
           Style Street

@@ -26,7 +26,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         "group relative flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-all duration-300 hover:border-zinc-600 hover:shadow-[0_0_24px_rgba(180,180,180,0.07)] cursor-pointer",
         className,
       )}
-      tabIndex={0}
+
     >
       {/* Image area */}
       <div className="relative aspect-[4/5] overflow-hidden bg-zinc-950">
@@ -65,7 +65,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </p>
         </div>
         <p className="ml-3 shrink-0 font-mono text-sm font-semibold text-zinc-300">
-          £{product.price / 100}
+          £{(product.price / 100).toFixed(2)}
         </p>
       </div>
     </Link>
