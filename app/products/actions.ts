@@ -14,6 +14,14 @@ export async function getProductById(id: number) {
   return await db.select().from(products).where(eq(products.id, id));
 }
 
+export async function getProductBySlug(slug: string) {
+  const [product] = await db
+    .select()
+    .from(products)
+    .where(eq(products.slug, slug));
+  return product ?? null;
+}
+
 export async function getFeaturedProducts() {
   return await db.select().from(products).where(eq(products.featured, true));
 }
@@ -47,7 +55,7 @@ export async function deleteProduct(id: number) {
 
   if (product?.image) {
     await del(product.image, {
-      token: process.env.STYLE_STREET_BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     });
   }
 
