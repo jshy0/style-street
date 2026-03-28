@@ -18,7 +18,7 @@ export function AddToCartButton({ product }: Props) {
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
-    addItem(product);
+    addItem({ ...product, size: "" });
     toast.success(`${product.name} added to cart`);
   }
 
