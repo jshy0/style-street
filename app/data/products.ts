@@ -15,3 +15,12 @@ export interface Product {
   badge?: "New" | "Hot";
   category: Categories;
 }
+
+export const CATEGORIES: Categories[] = [
+  "Tops",
+  "Hoodies",
+  "Bottoms",
+  "Outerwear",
+  "Footwear",
+  "Accessories",
+];

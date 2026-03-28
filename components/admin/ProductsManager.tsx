@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import { CATEGORIES } from "@/app/data/products";
 
 const productSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -355,13 +356,7 @@ export function ProductsManager({
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
                 <SelectContent className="bg-zinc-900 border-zinc-800">
-                  {[
-                    "Tops",
-                    "Bottoms",
-                    "Outerwear",
-                    "Footwear",
-                    "Accessories",
-                  ].map((cat) => (
+                  {CATEGORIES.map((cat) => (
                     <SelectItem key={cat} value={cat}>
                       {cat}
                     </SelectItem>
