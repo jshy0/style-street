@@ -64,7 +64,7 @@ export default async function ProfilePage() {
                   variant="outline"
                   className="w-full border-zinc-700 bg-zinc-800 text-zinc-100 hover:bg-zinc-700 hover:text-white"
                 >
-                  <Link href="/dashboard">Go to Dashboard</Link>
+                  <Link href="/admin">Go to Dashboard</Link>
                 </Button>
               </div>
             )}

@@ -57,6 +57,7 @@ export const products = pgTable("products", {
   badge: varchar({ length: 10 }), // "New" | "Hot" | null
   category: varchar({ length: 100 }).notNull(), // "Tops" | "Bottoms" | "Outerwear" | "Footwear" | "Accessories"
   featured: boolean().default(false).notNull(),
+  sizes: text().array().default([]).notNull(), // e.g. ["S", "M", "L", "XL"]
 });
 
 export const orders = pgTable("orders", {
@@ -83,6 +84,7 @@ export const orderItems = pgTable("order_items", {
   productImage: text().notNull(),
   price: integer().notNull(), // price at time of order, in pence
   quantity: integer().notNull(),
+  size: text(), // nullable — not all products have sizes
 });
 
 export const ordersRelations = relations(orders, ({ many }) => ({

@@ -11,6 +11,7 @@ interface ProductCardProduct {
   image: string;
   badge?: string | null;
   category: string;
+  sizes?: string[] | null;
 }
 
 interface ProductCardProps {
@@ -41,9 +42,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Subtle gradient at bottom of image */}
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-900/70 to-transparent" />
 
-        <div className="absolute bottom-2.5 right-2.5 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
-          <AddToCartButton product={product} />
-        </div>
+        {!product.sizes?.length && (
+          <div className="absolute bottom-2.5 right-2.5 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
+            <AddToCartButton product={product} />
+          </div>
+        )}
 
         {product.badge && (
           <div className="absolute left-3 top-3">

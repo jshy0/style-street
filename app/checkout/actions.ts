@@ -11,6 +11,7 @@ export type CartItemInput = {
   image: string;
   price: number;
   quantity: number;
+  size: string;
 };
 
 export type CheckoutInput = {
@@ -61,6 +62,7 @@ export async function placeOrder(data: CheckoutInput) {
           productImage: item.image,
           price: item.price,
           quantity: item.quantity,
+          size: item.size || null,
         })),
       );
 

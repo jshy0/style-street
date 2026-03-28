@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { LayoutDashboard, Package } from "lucide-react";
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/products", label: "Products", icon: Package },
+  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/products", label: "Products", icon: Package },
+  { href: "/admin/orders", label: "Orders", icon: Package },
 ];
 
 export function SidebarNav() {

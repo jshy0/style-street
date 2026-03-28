@@ -72,7 +72,7 @@ export function CartDrawer() {
           ) : (
             <ul className="divide-y divide-zinc-800/60 px-5">
               {items.map((item) => (
-                <li key={item.id} className="flex gap-4 py-4">
+                <li key={item.cartItemId} className="flex gap-4 py-4">
                   <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-lg bg-zinc-900">
                     <Image
                       src={item.image}
@@ -84,11 +84,18 @@ export function CartDrawer() {
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-medium leading-snug text-zinc-100">
-                        {item.name}
-                      </p>
+                      <div>
+                        <p className="text-sm font-medium leading-snug text-zinc-100">
+                          {item.name}
+                        </p>
+                        {item.size && (
+                          <p className="text-xs text-zinc-500 uppercase tracking-wider mt-0.5">
+                            Size: {item.size}
+                          </p>
+                        )}
+                      </div>
                       <button
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(item.cartItemId)}
                         className="shrink-0 text-zinc-600 transition-colors hover:text-zinc-300"
                         aria-label={`Remove ${item.name}`}
                       >
@@ -99,7 +106,7 @@ export function CartDrawer() {
                       <div className="flex items-center gap-1 rounded-full border border-zinc-800 bg-zinc-900 px-1">
                         <button
                           onClick={() =>
-                            updateQuantity(item.id, item.quantity - 1)
+                            updateQuantity(item.cartItemId, item.quantity - 1)
                           }
                           className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors hover:text-zinc-100"
                           aria-label="Decrease quantity"
@@ -111,7 +118,7 @@ export function CartDrawer() {
                         </span>
                         <button
                           onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
+                            updateQuantity(item.cartItemId, item.quantity + 1)
                           }
                           className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-400 transition-colors hover:text-zinc-100"
                           aria-label="Increase quantity"

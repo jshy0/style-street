@@ -44,7 +44,7 @@ export async function Navbar() {
           </Link>
           {isAdmin && (
             <Link
-              href="/dashboard"
+              href="/admin"
               className="rounded px-4 py-2 text-xs font-semibold tracking-[0.2em] uppercase text-zinc-400 transition-all hover:bg-zinc-900 hover:text-zinc-100"
             >
               <LayoutDashboard size={18} />

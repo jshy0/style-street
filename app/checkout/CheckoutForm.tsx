@@ -186,7 +186,7 @@ export function CheckoutForm({ defaultEmail, defaultName }: Props) {
 
           <ul className="space-y-3">
             {items.map((item) => (
-              <li key={item.id} className="flex items-center gap-3">
+              <li key={item.cartItemId} className="flex items-center gap-3">
                 <div className="relative h-12 w-10 shrink-0 overflow-hidden rounded-lg bg-zinc-800">
                   <Image
                     src={item.image}
@@ -198,7 +198,10 @@ export function CheckoutForm({ defaultEmail, defaultName }: Props) {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm text-zinc-100">{item.name}</p>
-                  <p className="text-xs text-zinc-500">Qty {item.quantity}</p>
+                  <p className="text-xs text-zinc-500">
+                    Qty {item.quantity}
+                    {item.size && ` · ${item.size}`}
+                  </p>
                 </div>
                 <p className="font-mono text-sm text-zinc-300">
                   £{((item.price * item.quantity) / 100).toFixed(2)}

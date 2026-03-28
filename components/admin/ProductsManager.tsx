@@ -42,6 +42,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Pencil, Trash2, Plus } from "lucide-react";
 import { CATEGORIES } from "@/app/data/products";
 
+const SIZE_OPTIONS = ["XS", "S", "M", "L", "XL", "XXL"];
+
 const productSchema = z.object({
   name: z.string().min(1, "Name is required"),
   price: z
@@ -52,6 +54,7 @@ const productSchema = z.object({
     }),
   category: z.string().min(1, "Category is required"),
   badge: z.string(),
+  sizes: z.array(z.string()).default([]),
 });
 
 type ProductFormValues = z.infer<typeof productSchema>;
@@ -78,6 +81,7 @@ export function ProductsManager({
       price: "",
       category: "",
       badge: "none",
+      sizes: [],
     },
   });
 
@@ -98,6 +102,7 @@ export function ProductsManager({
       price: String(product.price / 100),
       category: product.category,
       badge: product.badge ?? "none",
+      sizes: product.sizes ?? [],
     });
     setDialogOpen(true);
   }
@@ -133,6 +138,7 @@ export function ProductsManager({
       image: imagePreview as string,
       category: values.category,
       badge: values.badge === "none" ? null : values.badge,
+      sizes: values.sizes,
     };
 
     startTransition(async () => {
@@ -368,6 +374,37 @@ export function ProductsManager({
                   {form.formState.errors.category.message}
                 </p>
               )}
+            </div>
+
+            <div className="grid gap-2">
+              <Label>Sizes</Label>
+              <div className="flex flex-wrap gap-2">
+                {SIZE_OPTIONS.map((size) => {
+                  const selected = form.watch("sizes").includes(size);
+                  return (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => {
+                        const current = form.getValues("sizes");
+                        form.setValue(
+                          "sizes",
+                          selected
+                            ? current.filter((s) => s !== size)
+                            : [...current, size],
+                        );
+                      }}
+                      className={`rounded border px-3 py-1 text-xs font-semibold transition-colors ${
+                        selected
+                          ? "border-zinc-400 bg-zinc-700 text-zinc-100"
+                          : "border-zinc-700 bg-zinc-800 text-zinc-500 hover:border-zinc-600 hover:text-zinc-300"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             <div className="grid gap-2">
