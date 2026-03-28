@@ -284,7 +284,7 @@ export function ProductsManager({
 
       {/* Create / Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
+        <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 sm:max-w-2xl">
           <DialogHeader>
             <DialogTitle>
               {editing ? "Edit Product" : "New Product"}
@@ -337,7 +337,7 @@ export function ProductsManager({
                 className="bg-zinc-800 border-zinc-700"
               />
               {imagePreview && (
-                <div className="relative w-full h-48 bg-zinc-800 rounded border border-zinc-700 overflow-hidden">
+                <div className="relative w-full h-80 bg-zinc-800 rounded border border-zinc-700 overflow-hidden">
                   <img
                     src={imagePreview}
                     alt="Preview"
@@ -450,7 +450,7 @@ export function ProductsManager({
 
       {/* Delete Confirm Dialog */}
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100">
+        <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 sm:max-w-2xl">
           <DialogHeader>
             <DialogTitle>Delete Product</DialogTitle>
           </DialogHeader>
