@@ -6,10 +6,12 @@ export async function requireAdmin() {
 
   if (!session?.user) {
     redirect("/api/auth/signin");
+    return;
   }
 
   if (session.user.role !== "admin") {
     redirect("/");
+    return;
   }
 
   return session;
