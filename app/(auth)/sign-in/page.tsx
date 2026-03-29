@@ -1,9 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import SignIn from "@/components/sign-in";
 import { ScreenTemplate } from "@/components/screen/ScreenTemplate";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { auth } from "@/auth";
 
-export default function SignInPage() {
+export default async function SignInPage() {
+  const session = await auth();
+  if (session?.user) {
+    redirect("/");
+  }
   return (
     <ScreenTemplate className="flex flex-col items-center justify-center pt-0">
       <Card className="border-zinc-700 w-full max-w-sm">
