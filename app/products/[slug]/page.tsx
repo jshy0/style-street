@@ -100,13 +100,7 @@ export default async function ProductPage({ params }: Props) {
             <AddToCartButtonLarge product={product} />
 
             {/* Footer detail */}
-            <div className="mt-10 grid grid-cols-2 gap-4 border-t border-zinc-800/60 pt-8">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
-                  Category
-                </p>
-                <p className="mt-1 text-sm text-zinc-300">{product.category}</p>
-              </div>
+            <div className="mt-10 border-t border-zinc-800/60 pt-8">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
                   Availability
