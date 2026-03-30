@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Orbitron, Space_Grotesk, Geist } from "next/font/google";
+import { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { DemoBanner } from "@/components/DemoBanner";
 import { Footer } from "@/components/Footer";
@@ -50,7 +51,9 @@ export default function RootLayout({
         <div className="flex flex-1 flex-col pt-10">{children}</div>
         <Footer />
         <Toaster theme="dark" />
-        <LoginToast />
+        <Suspense>
+          <LoginToast />
+        </Suspense>
         <Analytics />
       </body>
     </html>
