@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { DemoBanner } from "@/components/DemoBanner";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { LoginToast } from "@/components/LoginToast";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
@@ -46,11 +47,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#111012] text-zinc-100">
         <Navbar />
         <DemoBanner />
-        <div className="flex flex-1 flex-col pt-10">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col pt-10">{children}</div>
         <Footer />
         <Toaster theme="dark" />
+        <LoginToast />
         <Analytics />
       </body>
     </html>
