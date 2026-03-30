@@ -5,6 +5,7 @@ const createJestConfig = nextJest({ dir: "./" });
 
 const config: Config = {
   testEnvironment: "node",
+  testPathIgnorePatterns: ["/node_modules/", "/tests/e2e/"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
   },
