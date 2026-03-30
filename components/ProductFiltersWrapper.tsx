@@ -10,17 +10,17 @@ export function ProductFiltersWrapper() {
   function onCategoryChange(category: string | null) {
     const params = new URLSearchParams(searchParams.toString());
     category ? params.set("category", category) : params.delete("category");
-    router.push(`/products?${params.toString()}`);
+    router.replace(`/products?${params.toString()}`, { scroll: false });
   }
 
   function onBadgeChange(badge: string | null) {
     const params = new URLSearchParams(searchParams.toString());
     badge ? params.set("badge", badge) : params.delete("badge");
-    router.push(`/products?${params.toString()}`);
+    router.replace(`/products?${params.toString()}`, { scroll: false });
   }
 
   function onClear() {
-    router.push("/products");
+    router.replace("/products", { scroll: false });
   }
 
   return (
