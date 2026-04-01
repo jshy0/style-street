@@ -4,6 +4,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   varchar,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
@@ -87,6 +88,29 @@ export const orderItems = pgTable("order_items", {
   size: text(), // nullable — not all products have sizes
 });
 
+export const wishlists = pgTable(
+  "wishlists",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    userId: text()
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    productId: integer()
+      .notNull()
+      .references(() => products.id, { onDelete: "cascade" }),
+    createdAt: timestamp().defaultNow().notNull(),
+  },
+  (t) => [unique("wishlists_user_product_unique").on(t.userId, t.productId)],
+);
+
+export const wishlistsRelations = relations(wishlists, ({ one }) => ({
+  user: one(users, { fields: [wishlists.userId], references: [users.id] }),
+  product: one(products, {
+    fields: [wishlists.productId],
+    references: [products.id],
+  }),
+}));
+
 export const ordersRelations = relations(orders, ({ many }) => ({
   items: many(orderItems),
 }));
@@ -101,3 +125,4 @@ export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Order = typeof orders.$inferSelect;
 export type OrderItem = typeof orderItems.$inferSelect;
+export type WishlistItem = typeof wishlists.$inferSelect;
